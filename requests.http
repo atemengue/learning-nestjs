@@ -1,0 +1,16 @@
+### List of messages
+
+GET http://localhost:3000/messages
+
+
+### create a new message
+POST http://localhost:3000/messages
+content-cype: application/json
+
+{
+  "content": "hi there"
+}
+
+### Get a particular message
+
+GET http://localhost:3000/messages/12323
