@@ -5,12 +5,11 @@ GET http://localhost:3000/messages
 
 ### create a new message
 POST http://localhost:3000/messages
-content-cype: application/json
+content-type: application/json
 
 {
-  "content": "hi there"
+  "content": "hello"
 }
 
 ### Get a particular message
-
 GET http://localhost:3000/messages/12323
