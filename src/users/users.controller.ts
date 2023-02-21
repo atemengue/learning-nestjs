@@ -9,16 +9,21 @@ import {
   Post,
   Query,
   Session,
+  UseInterceptors,
 } from '@nestjs/common';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
+import { CurrentUser } from './decorators/current-user-decorator';
 import { CreateUserDto } from './dtos/create-user.dtos';
 import { UpdateUserDto } from './dtos/upate-user.dtos';
+import { CurrentUserInterceptor } from './interceptors/current.user.interceptor';
 import { UserDto } from './user.dtos';
+import { User } from './user.entity';
 import { UsersService } from './users.service';
 
 @Controller('auth')
 @Serialize(UserDto)
+@UseInterceptors(CurrentUserInterceptor)
 export class UsersController {
   constructor(
     private userService: UsersService,
@@ -31,13 +36,13 @@ export class UsersController {
   }
 
   @Get('/colors')
-  getColor(@Session() session: any) {
-    return session.color;
+  getColor(@Session() session: any, color: string) {
+    session.color = color;
   }
 
   @Get('/whoami')
-  WhoAmi(@Session() session: any) {
-    return this.userService.findOne(session.userId);
+  WhoAmi(@CurrentUser() user: User) {
+    return user;
   }
 
   @Post('/signup')
