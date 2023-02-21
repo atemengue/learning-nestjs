@@ -4,11 +4,9 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "regis@email.com",
+  "email": "tyra@email.com",
   "password": "test9393"
 }
-
-
 
 
 ### sigin request
@@ -16,7 +14,7 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-  "email": "regis@email.com",
+  "email": "hello@email.com",
   "password": "test9393"
 }
 
@@ -27,3 +25,14 @@ GET http://localhost:3000/auth/1
 
 ### Find all users with a given email
 GET http://localhost:3000/auth?email=user1@email.com
+
+### Set a colors
+GET http://localhost:3000/auth/colors/blue
+
+
+### get color
+GET http://localhost:3000/auth/colors
+
+
+### GET the currently signed in user
+GET http://localhost:3000/auth/whoami
